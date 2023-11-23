@@ -17,6 +17,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_20_124241) do
     t.text "category", null: false
     t.text "condition", null: false
     t.integer "price", null: false
+    t.text "item_image", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
