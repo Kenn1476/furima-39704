@@ -14,42 +14,66 @@ Things you may want to cover:
 * Database creation
 
 ## Userテーブル
-| Column          | Type   | Options     |
-| ----------------| ------ | ----------- |
-| Nickname        | Text   | null: false |
-| Email           | String | null: false |
-| Password        | String | null: false |
-| First Name      | String | null: false |
-| Last Name       | String | null: false |
-| First Name Kana | String | null: false |
-| Last Name Kana  | String | null: false |
-| Birth Date      | Date   | null: false |
+| Column            | Type   | Options                   |
+| ------------------| ------ | ------------------------- |
+| nickname          | text   | null: false, unique: true |
+| email             | string | null: false               |
+| encrypted_password| string | null: false               |
+| firs_name         | string | null: false               |
+| last_name         | string | null: false               |
+| first_name_kana   | string | null: false               |
+| last_name_kana    | string | null: false               |
+| birth_date        | date   | null: false               |
 
 ### Association
-- has_many :order
+- has_many :orders
 - has_many :items
+- has_many :addresses
 
 Itemsテーブル
-| Column      | Type   | Options     |
-| ------------| ------ | ----------- |
-| Image       | Text   | null: false |
-| Item Name   | Text   | null: false |
-| Description | Text   | null: false |
-| Category    | Text   | null: false |
-| Price       | Integer| null: false |
-| Message     | Text   | null: false |
+| Column                   | Type      | Options     |
+| -------------------------| --------- | ----------- |
+| item_name                | string    | null: false |
+| description              | text      | null: false |
+| item_category            | text      | null: false |
+| item_sales_status        | integer   | null: false |
+| item_shipping_fee_status | integer   | null: false |
+| item_scheduled_delivery  | integer   | null: false |
+| item_price               | integer   | null: false |
+| user                     | references| null: false, foreign_key: true |
+| address                  | text      | null: false |
 
 ### Association
 - belongs_to :user
+- belongs_to :address
 
 Orderテーブル
-| Column      | Type   | Options     |
-| ------------| ------ | ----------- |
-| Price       | Integer| null: false |
-| Address     | Text   | null: false |
+| Column      | Type       | Options                        |
+| ------------| -----------| -------------------------------|
+| price       | integer    | null: false                    |
+| address     | text       | null: false                    |
+| user        | references | null: false, foreign_key: true |
+| item        | references | null: false, foreign_key: true |
 
 ### Association
 - belongs_to :user
+- belongs_to :items
+
+
+Addressテーブル
+ Column            | Type       | Options                        |
+| -----------------| ---------- | ------------------------------ |
+| postal_code      | integer    | null: false                    |
+| prefecture       | text       | null: false                    |
+| city             | text       | null: false                    |
+| street_number    | integer    | null: false                    |
+| apartment_name   | text       | null: false                    |
+| telephone_number | integer    | null: false                    |
+| user             | references | null: false, foreign_key: true |
+
+### Association
+- belongs_to :user
+- belongs_to :items
 
 
 * Database initialization
