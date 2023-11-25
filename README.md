@@ -13,13 +13,13 @@ Things you may want to cover:
 
 * Database creation
 
-## Userテーブル
+## Usersテーブル
 | Column            | Type   | Options                   |
 | ------------------| ------ | ------------------------- |
-| nickname          | text   | null: false, unique: true |
-| email             | string | null: false               |
+| email             | string | null: false, unique: true |
+| nickname          | string | null: false               |
 | encrypted_password| string | null: false               |
-| firs_name         | string | null: false               |
+| first_name         | string | null: false               |
 | last_name         | string | null: false               |
 | first_name_kana   | string | null: false               |
 | last_name_kana    | string | null: false               |
@@ -28,52 +28,49 @@ Things you may want to cover:
 ### Association
 - has_many :orders
 - has_many :items
-- has_many :addresses
 
 Itemsテーブル
-| Column                   | Type      | Options     |
-| -------------------------| --------- | ----------- |
-| item_name                | string    | null: false |
-| description              | text      | null: false |
-| item_category            | text      | null: false |
-| item_sales_status        | integer   | null: false |
-| item_shipping_fee_status | integer   | null: false |
-| item_scheduled_delivery  | integer   | null: false |
-| item_price               | integer   | null: false |
-| user                     | references| null: false, foreign_key: true |
-| address                  | text      | null: false |
+| Column                      | Type      | Options     |
+| ----------------------------| --------- | ----------- |
+| item_name                   | string    | null: false |
+| description                 | text      | null: false |
+| item_category_id            | integer   | null: false |
+| item_sales_status_id        | integer   | null: false |
+| item_shipping_fee_status_id | integer   | null: false |
+| item_prefecture_id          | integer   | null: false |
+| item_scheduled_delivery_id  | integer   | null: false |
+| item_price                  | integer   | null: false |
+| user                        | references| null: false, foreign_key: true |
+| order                       | references| null: false, foreign_key: true |
 
 ### Association
 - belongs_to :user
-- belongs_to :address
+- belongs_to :order
 
-Orderテーブル
+Ordersテーブル
 | Column      | Type       | Options                        |
 | ------------| -----------| -------------------------------|
-| price       | integer    | null: false                    |
-| address     | text       | null: false                    |
 | user        | references | null: false, foreign_key: true |
 | item        | references | null: false, foreign_key: true |
+| address     | references | null: false, foreign_key: true |
 
 ### Association
 - belongs_to :user
-- belongs_to :items
+- belongs_to :item
+- belongs_to :address
 
-
-Addressテーブル
- Column            | Type       | Options                        |
-| -----------------| ---------- | ------------------------------ |
-| postal_code      | integer    | null: false                    |
-| prefecture       | text       | null: false                    |
-| city             | text       | null: false                    |
-| street_number    | integer    | null: false                    |
-| apartment_name   | text       | null: false                    |
-| telephone_number | integer    | null: false                    |
-| user             | references | null: false, foreign_key: true |
+Addressesテーブル
+ Column              | Type       | Options                        |
+| -------------------| ---------- | ------------------------------ |
+| postal_code        | string     | null: false                    |
+| item_prefecture_id | text       | null: false                    |
+| city               | string     | null: false                    |
+| street_number      | string     | null: false                    |
+| telephone_number   | string     | null: false                    |
+| order              | references | null: false, foreign_key: true |
 
 ### Association
-- belongs_to :user
-- belongs_to :items
+- belongs_to :order
 
 
 * Database initialization
