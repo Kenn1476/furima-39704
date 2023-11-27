@@ -13,6 +13,23 @@ Things you may want to cover:
 
 * Database creation
 
+Itemsテーブル
+| Column                      | Type      | Options     |
+| ----------------------------| --------- | ----------- |
+| item_name                   | string    | null: false |
+| description                 | text      | null: false |
+| item_category_id            | integer   | null: false |
+| item_sales_status_id        | integer   | null: false |
+| item_shipping_fee_status_id | integer   | null: false |
+| item_prefecture_id          | integer   | null: false |
+| item_scheduled_delivery_id  | integer   | null: false |
+| item_price                  | integer   | null: false |
+| user                        | references| null: false, foreign_key: true |
+
+### Association
+- belongs_to :user
+- belongs_to :order
+
 ## Usersテーブル
 | Column            | Type   | Options                   |
 | ------------------| ------ | ------------------------- |
@@ -29,44 +46,26 @@ Things you may want to cover:
 - has_many :orders
 - has_many :items
 
-Itemsテーブル
-| Column                      | Type      | Options     |
-| ----------------------------| --------- | ----------- |
-| item_name                   | string    | null: false |
-| description                 | text      | null: false |
-| item_category_id            | integer   | null: false |
-| item_sales_status_id        | integer   | null: false |
-| item_shipping_fee_status_id | integer   | null: false |
-| item_prefecture_id          | integer   | null: false |
-| item_scheduled_delivery_id  | integer   | null: false |
-| item_price                  | integer   | null: false |
-| user                        | references| null: false, foreign_key: true |
-| order                       | references| null: false, foreign_key: true |
-
-### Association
-- belongs_to :user
-- belongs_to :order
-
 Ordersテーブル
 | Column      | Type       | Options                        |
 | ------------| -----------| -------------------------------|
 | user        | references | null: false, foreign_key: true |
 | item        | references | null: false, foreign_key: true |
-| address     | references | null: false, foreign_key: true |
 
 ### Association
-- belongs_to :user
 - belongs_to :item
-- belongs_to :address
+- belongs_to :user
+
 
 Addressesテーブル
  Column              | Type       | Options                        |
 | -------------------| ---------- | ------------------------------ |
 | postal_code        | string     | null: false                    |
-| item_prefecture_id | text       | null: false                    |
+| prefecture         | string     | null: false                    |
 | city               | string     | null: false                    |
 | street_number      | string     | null: false                    |
 | telephone_number   | string     | null: false                    |
+| building           | string     | null: false                    |
 | order              | references | null: false, foreign_key: true |
 
 ### Association
