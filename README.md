@@ -16,19 +16,19 @@ Things you may want to cover:
 Itemsテーブル
 | Column                      | Type      | Options     |
 | ----------------------------| --------- | ----------- |
-| item_name                   | string    | null: false |
+| name                   | string    | null: false |
 | description                 | text      | null: false |
-| item_category_id            | integer   | null: false |
-| item_sales_status_id        | integer   | null: false |
-| item_shipping_fee_status_id | integer   | null: false |
-| item_prefecture_id          | integer   | null: false |
-| item_scheduled_delivery_id  | integer   | null: false |
-| item_price                  | integer   | null: false |
+| category_id            | integer   | null: false |
+| sales_status_id        | integer   | null: false |
+| shipping_fee_status_id | integer   | null: false |
+| prefecture_id          | integer   | null: false |
+| scheduled_delivery_id  | integer   | null: false |
+| price                  | integer   | null: false |
 | user                        | references| null: false, foreign_key: true |
 
 ### Association
 - belongs_to :user
-- belongs_to :order
+- has_one :order
 
 ## Usersテーブル
 | Column            | Type   | Options                   |
@@ -55,17 +55,18 @@ Ordersテーブル
 ### Association
 - belongs_to :item
 - belongs_to :user
+- belongs_to :address
 
 
 Addressesテーブル
  Column              | Type       | Options                        |
 | -------------------| ---------- | ------------------------------ |
 | postal_code        | string     | null: false                    |
-| prefecture         | string     | null: false                    |
+| prefecture_id      | string     | null: false                    |
 | city               | string     | null: false                    |
 | street_number      | string     | null: false                    |
 | telephone_number   | string     | null: false                    |
-| building           | string     | null: false                    |
+| building           | string     |                                |
 | order              | references | null: false, foreign_key: true |
 
 ### Association
