@@ -11,17 +11,6 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema[7.0].define(version: 2023_11_20_124241) do
-  create_table "items", charset: "utf8", force: :cascade do |t|
-    t.string "item_name", null: false
-    t.text "description", null: false
-    t.text "category", null: false
-    t.text "condition", null: false
-    t.integer "price", null: false
-    t.text "item_image", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "users", charset: "utf8", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
