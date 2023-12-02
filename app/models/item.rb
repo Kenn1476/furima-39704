@@ -5,6 +5,7 @@ class Item < ApplicationRecord
   belongs_to :sales_status
   belongs_to :scheduled_delivery
   belongs_to :shipping_fee_status
+  belongs_to :user
 
   has_one_attached :image
 
@@ -17,10 +18,4 @@ class Item < ApplicationRecord
   validates :shipping_fee_status_id, numericality: { other_than: 1, message: "can't be blank" }
   validates :prefecture_id, numericality: { other_than: 1, message: "can't be blank" }
   validates :scheduled_delivery_id, numericality: { other_than: 1, message: "can't be blank" }
-
-  validates :content, presence: true, unless: :was_attached?
-
-  def was_attached?
-    image.attached?
-  end
 end
