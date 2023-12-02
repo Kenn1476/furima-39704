@@ -8,8 +8,8 @@ FactoryBot.define do
     prefecture_id             { '2' }
     scheduled_delivery_id     { '2' }
     price                     { '400' }
+    image                     {Rack::Test::UploadedFile.new(File.join(Rails.root, 'spec/factories/test.jpg')) }
     association :user
-    # created_at                {'2023-12-02 09:48:51.471740'}
-    # updated_at                {'2023-12-02 09:48:51.496879'}
+
   end
 end
