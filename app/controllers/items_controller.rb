@@ -5,25 +5,24 @@ class ItemsController < ApplicationController
     # @items = Item.all
   end
 
-#   def new
-#     @item = Item.new
-#   end
+  #   def new
+  #     @item = Item.new
+  #   end
 
-#   def create
-#     Item.create(item_params)
-#     redirect_to '/'
-#   end
+  #   def create
+  #     Item.create(item_params)
+  #     redirect_to '/'
+  #   end
 
-# private
+  # private
 
-# def item_params
-#   params.require(:item).permit(:item_name, :description, :category, :condition, :price, :item_image)
-# end
+  # def item_params
+  #   params.require(:item).permit(:item_name, :description, :category, :condition, :price, :item_image)
+  # end
 
-# def move_to_index
-#   unless user_signed_in?
-#     redirect_to action: :index
-#   end
-# end
-
+  # def move_to_index
+  #   unless user_signed_in?
+  #     redirect_to action: :index
+  #   end
+  # end
 end
