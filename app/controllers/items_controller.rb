@@ -2,9 +2,9 @@ class ItemsController < ApplicationController
   before_action :move_to_index, except: [:index, :show]
   before_action :authenticate_user!, except: [:index]
 
-  # def index
-  #   @items = Item.all
-  # end
+  def index
+    @items = Item.all.order("created_at DESC")
+  end
 
   def new
     @item = Item.new
@@ -31,4 +31,5 @@ class ItemsController < ApplicationController
 
     redirect_to action: :index
   end
+
 end
