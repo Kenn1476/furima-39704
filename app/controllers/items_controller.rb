@@ -19,18 +19,32 @@ class ItemsController < ApplicationController
     end
   end
 
-  # def destroy
-  #   item = Item.find(params[:id])
-  #   item.destroy
-  #   redirect_to root_path
-  # end
+  def destroy
+    item = Item.find(params[:id])
+    item.destroy
+    redirect_to root_path
+  end
 
-  # def edit
-  #   @item = Item.find(params[:id])
-  # end
+  def edit
+    @item = Item.find(params[:id])
+    if @item.user_id == current_user.id && @item.order.nil?
+    else
+      redirect_to root_path
+    end
+  end
 
   def show
     @item = Item.find(params[:id])
+  end
+
+  def update
+    @item = Item.find(params[:id])
+    @item.update(item_params)
+    if @item.valid?
+      redirect_to item_path(item_params)
+    else
+      render :edit, status: :unprocessable_entity
+    end
   end
 
   private
@@ -41,9 +55,7 @@ class ItemsController < ApplicationController
   end
 
   def move_to_index
-    return if user_signed_in?
-
-    redirect_to action: :index
+    redirect_to new_user_session_path unless user_signed_in?
   end
 
 end
