@@ -8,8 +8,7 @@ FactoryBot.define do
     prefecture_id             { '2' }
     scheduled_delivery_id     { '2' }
     price                     { '400' }
-    image                     {Rack::Test::UploadedFile.new(File.join(Rails.root, 'spec/factories/test.jpg')) }
+    image                     { Rack::Test::UploadedFile.new(File.join(Rails.root, 'spec/factories/test.jpg')) }
     association :user
-
   end
 end
