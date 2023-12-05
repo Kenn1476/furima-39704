@@ -1,9 +1,10 @@
 class ItemsController < ApplicationController
-  before_action :move_to_index, except: [:index, :show]
   before_action :authenticate_user!, except: [:index, :show]
 
+  before_action :set_item, only: [:show, :edit, :update]
+
   def index
-    @items = Item.includes(:user).order("created_at DESC")
+    @items = Item.includes(:user).order('created_at DESC')
   end
 
   def new
@@ -25,12 +26,22 @@ class ItemsController < ApplicationController
   #   redirect_to root_path
   # end
 
-  # def edit
-  #   @item = Item.find(params[:id])
-  # end
+  def edit
+    return if @item.user_id == current_user.id && @item.order.nil?
+
+    redirect_to root_path
+  end
 
   def show
-    @item = Item.find(params[:id])
+  end
+
+  def update
+    @item.update(item_params)
+    if @item.valid?
+      redirect_to item_path(@item)
+    else
+      render :edit, status: :unprocessable_entity
+    end
   end
 
   private
@@ -40,10 +51,7 @@ class ItemsController < ApplicationController
                                  :scheduled_delivery_id, :price, :image).merge(user_id: current_user.id)
   end
 
-  def move_to_index
-    return if user_signed_in?
-
-    redirect_to action: :index
+  def set_item
+    @item = Item.find(params[:id])
   end
-
 end
