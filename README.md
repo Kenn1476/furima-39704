@@ -41,7 +41,7 @@ Itemsテーブル
 | first_name_kana   | string | null: false               |
 | last_name_kana    | string | null: false               |
 | birth_date        | date   | null: false               |
-
+rails
 ### Association
 - has_many :orders
 - has_many :items
