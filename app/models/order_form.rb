@@ -8,7 +8,6 @@ class OrderForm
   validates :prefecture_id, numericality: { other_than: 0, message: "can't be blank" }
   validates :city, presence: true
   validates :street_number, presence: true
-  validates :building, presence: true
   validates :telephone_number, format: { with: /\A[0-9]{11}\z/, message: 'is invalid' }
   validates :token, presence: true
 

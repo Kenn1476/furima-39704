@@ -122,35 +122,34 @@
     </div>
     <ul class='item-lists'>
 
-      <li class='list'>
-        <%= @items.each do |item| %>
-        <div class='item-img-content'>
-          <%= link_to  image_tag(item.image, class: "item-img"), item_path(item.id) %>
+      <%= @items.each do |item| %>
+        <li class='list'>
+          <div class='item-img-content'>
+            <%= link_to  image_tag(item.image, class: "item-img"), item_path(item.id) %>
 
-            <% if item.order != nil %>
-            <div class='sold-out'>
-              <span>Sold Out!!</span>
-            </div>
-            <% end %>
-
-        </div>
-        <div class='item-info'>
-          <h3 class='item-name'>
-            <%=  item.name %>
-          </h3>
+              <% if item.order != nil %>
+              <div class='sold-out'>
+                <span>Sold Out!!</span>
+              </div>
+               <% end %>
+          </div>
+          <div class='item-info'>
+            <h3 class='item-name'>
+             <%=  item.name %>
+             </h3>
           <div class='item-price'>
             <span><%= item.price %> <%= item.shipping_fee_status.name%> </span>
-            <div class='star-btn'>
-              <%= image_tag "star.png", class:"star-icon" %>
-              <span class='star-count'>0</span>
+              <div class='star-btn'>
+                <%= image_tag "star.png", class:"star-icon" %>
+               <span class='star-count'>0</span>
+              </div>
             </div>
           </div>
-        </div>
-        <% end %>
-      </li>
-
+        </li>
+       <% end %>
+  
       <% if  @items[0] == nil %>
-      <li class='list'>
+        <li class='list'>
         <%= link_to '#' do %>
         <%= image_tag "https://tech-master.s3.amazonaws.com/uploads/curriculums/images/Rails1-4/sample.jpg", class: "item-img" %>
         <div class='item-info'>
@@ -167,7 +166,7 @@
         </div>
         <% end %>
       </li>
-       <% end %>
+     <% end %>
     </ul>
   </div>
   
