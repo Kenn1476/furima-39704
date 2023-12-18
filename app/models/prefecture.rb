@@ -1,7 +1,7 @@
 class Prefecture < ActiveHash::Base
   self.data = [
-    { id: 1, area_id: 1, name: '---', name_english: '---' },
-    { id: 48, area_id: 48, name: '北海道', name_english: 'hokkaido' },
+    { id: 0, area_id: 0, name: '---', name_english: '---' },
+    { id: 1, area_id: 1, name: '北海道', name_english: 'hokkaido' },
     { id: 2, area_id: 2, name: '青森県', name_english: 'aomori' },
     { id: 3, area_id: 2, name: '岩手県', name_english: 'iwate' },
     { id: 4, area_id: 2, name: '宮城県', name_english: 'miyagi' },
